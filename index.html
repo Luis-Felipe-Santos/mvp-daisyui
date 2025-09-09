@@ -1,13 +1,118 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<html lang="pt-BR" prefix="og: http://ogp.me/ns#">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Favicon otimizado -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="img/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="img/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="img/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="img/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+  <!-- Viewport e responsividade -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta tags essenciais para SEO -->
+  <title>Rick and Morty - Explorador de Personagens | Guia Completo dos Personagens</title>
+  <meta name="description" content="Explore todos os personagens do universo Rick and Morty! Descubra informações detalhadas sobre Rick, Morty e centenas de outros personagens da série. Base de dados completa e atualizada.">
+  <meta name="keywords" content="Rick and Morty, personagens, Rick Sanchez, Morty Smith, série animada, Adult Swim, guia personagens, base de dados">
+  <meta name="author" content="Luis Felipe">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://mvp-daisyui-rick-and-morty.netlify.app/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mvp-daisyui-rick-and-morty.netlify.app/">
+  <meta property="og:title" content="Rick and Morty - Explorador de Personagens | Guia Completo">
+  <meta property="og:description" content="Explore todos os personagens do universo Rick and Morty! Descubra informações detalhadas sobre Rick, Morty e centenas de outros personagens da série.">
+  <meta property="og:image" content="https://seudominio.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Rick and Morty Personagens - Explorador Completo">
+  <meta property="og:site_name" content="Rick and Morty Explorer">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://mvp-daisyui-rick-and-morty.netlify.app/">
+  <meta name="twitter:title" content="Rick and Morty - Explorador de Personagens">
+  <meta name="twitter:description" content="Explore todos os personagens do universo Rick and Morty! Base de dados completa e atualizada com informações detalhadas.">
+  <meta name="twitter:image" content="https://seudominio.com/twitter-image.jpg">
+  <meta name="twitter:image:alt" content="Rick and Morty Personagens Explorer">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rick and Morty Explorer",
+    "description": "Aplicação web para explorar personagens do universo Rick and Morty com informações detalhadas e busca avançada",
+    "url": "https://seudominio.com",
+    "applicationCategory": "Entertainment",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Rick and Morty Explorer Team"
+    },
+    "about": {
+      "@type": "TVSeries",
+      "name": "Rick and Morty",
+      "description": "Série animada de comédia e ficção científica"
+    }
+  }
+  </script>
+
+  <!-- Performance e preloading -->
+  <link rel="preconnect" href="https://rickandmortyapi.com">
+  <link rel="dns-prefetch" href="https://rickandmortyapi.com">
+
+  <!-- Tema e aparência -->
+  <meta name="theme-color" content="#00b4d8">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Preload de recursos críticos (adicione conforme necessário) -->
+  <link rel="preload" href="/src/main.js" as="script">
+
+  <!-- Hreflang para outras versões de idioma (se houver) -->
+  <link rel="alternate" hreflang="pt-br" href="https://seudominio.com/">
+  <link rel="alternate" hreflang="en" href="https://seudominio.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://seudominio.com/">
+</head>
+
+<body>
+  <!-- Conteúdo principal da aplicação -->
+  <div id="app">
+    <!-- Loading placeholder para SEO e UX -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+      <div>
+        <h1 style="text-align: center; color: #00b4d8; margin-bottom: 10px;">Rick and Morty Explorer</h1>
+        <p style="text-align: center; color: #666;">Carregando personagens...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script principal da aplicação -->
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Service Worker para PWA (opcional) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .catch(err => console.log('SW registration failed'));
+      });
+    }
+  </script>
+</body>
+
 </html>
