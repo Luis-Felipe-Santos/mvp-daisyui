@@ -104,15 +104,6 @@
   <!-- Script principal da aplicação -->
   <script type="module" src="/src/main.js"></script>
 
-  <!-- Service Worker para PWA (opcional) -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .catch(err => console.log('SW registration failed'));
-      });
-    }
-  </script>
 </body>
 
 </html>
