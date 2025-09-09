@@ -1,4 +1,5 @@
 <script setup>
+import axios from 'axios'
 const emit = defineEmits(['clickEpisode'])
 const props = defineProps({
   name: String,
@@ -7,11 +8,10 @@ const props = defineProps({
   characters: Array,
 })
 
+const charactersData = ref([])
+
 const characterFilter = computed(() => {
-  if (props.characters.length > 5) {
-    return props.characters.splice(0, 5)
-  }
-  return props.characters
+  return charactersData.value.slice(0, 5)
 })
 
 const charactersCount = computed(() => {
@@ -22,13 +22,22 @@ const charactersCount = computed(() => {
   return 0
 })
 
-function getImage(url) {
-  const newUrl = url.replace(
-    'https://rickandmortyapi.com/api/character/',
-    'https://rickandmortyapi.com/api/character/avatar/',
-  )
-  return `${newUrl}.jpeg`
+async function fetchCharacters() {
+  try {
+    // extrai só os IDs das URLs
+    const ids = props.characters.map((url) => url.split('/').pop())
+    // pega no formato [1,2,3,4,5]
+    const { data } = await axios.get(`https://rickandmortyapi.com/api/character/[${ids.join(',')}]`)
+    // a API retorna objeto se for 1 só, ou array se for vários
+    charactersData.value = Array.isArray(data) ? data : [data]
+  } catch (error) {
+    console.error('Erro ao carregar personagens', error)
+  }
 }
+
+onMounted(() => {
+  fetchCharacters()
+})
 </script>
 
 <template>
@@ -39,7 +48,11 @@ function getImage(url) {
     <div class="avatar-group -space-x-6">
       <div v-for="character in characterFilter" class="avatar">
         <div class="w-12">
-          <img :src="getImage(character)" />
+          <img
+            :src="character.image"
+            :alt="`Imagem do personagem ${character.name}`"
+            :title="character.name"
+          />
         </div>
       </div>
       <div v-if="charactersCount" class="avatar avatar-placeholder">
